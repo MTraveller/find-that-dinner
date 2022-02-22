@@ -1,4 +1,3 @@
-import { form } from './forms.js';
 import { fetchRecipes } from './utils.js';
 
 // Function that extracts the info from the returned api response and loops over each item
