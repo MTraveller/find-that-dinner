@@ -42,6 +42,4 @@ async function handleSubmit(e) {
     displayRecipes(recipesResults);
 }
 
-form.addEventListener('submit', handleSubmit);
-
 export { handleSubmit };
