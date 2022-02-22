@@ -1,12 +1,10 @@
 import { firstEndpoint, lastEndpoint } from './apis.js';
 
-async function displayRecipes(query = 'chicken') {
-    const endpoint = `${firstEndpoint}${query}${lastEndpoint}`;
-    console.log(endpoint);
-    const response = await fetch(endpoint);
+async function fetchRecipes(query = 'chicken') {
+    const response = await fetch(`${firstEndpoint}${query}${lastEndpoint}`);
     const data = await response.json();
     const results = data.hits;
-    console.log(results);
+    return results;
 }
 
-export { displayRecipes };
+export { fetchRecipes };
