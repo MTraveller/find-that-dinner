@@ -1,3 +1,3 @@
-import { data } from './utils.js'
+import { displayRecipes } from './utils.js'
 
-console.log(data);
+displayRecipes();
