@@ -1,9 +1,3 @@
-import { form } from './handlers.js';
+const form = document.querySelector('[name="search"]');
 
-let query = form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    let query = e.currentTarget.keyword.value;
-    return query;
-});
-
-export { query };
+export { form };
