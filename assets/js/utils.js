@@ -1,13 +1,12 @@
-import { apiPromise } from './apis.js';
+import { firstEndpoint, lastEndpoint } from './apis.js';
 
-function handleError(err) {
-    console.log(err);
+async function displayRecipes(query = 'chicken') {
+    const endpoint = `${firstEndpoint}${query}${lastEndpoint}`;
+    console.log(endpoint);
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    const results = data.hits;
+    console.log(results);
 }
 
-const data = apiPromise.then(response => {
-    return response.json();
-}).then(result => {
-    return result.hits;
-}).catch(handleError);
-
-export { data };
+export { displayRecipes };
