@@ -1,11 +1,11 @@
 import { form } from './forms.js';
-import { fetchSubmit } from './utils.js';
+import { fetchSubmit, fetchRecipe } from './utils.js';
 
 const recipesGrid = document.querySelector('.recipes');
-// let recipeCard = null;
 
 function handleRecipeClick(e) {
-  console.log(e.currentTarget);
+  const recipe = e.currentTarget.querySelector('.recipe-card-title').innerText;
+  fetchRecipe(recipe);
 }
 
 function grabRecipeCard() {
