@@ -1,5 +1,5 @@
 import { fetchRecipes, fetchResults } from './apis.js';
-import { displayRecipes, displaySingleRecipe } from './scripts.js';
+import { displayRecipes, displaySingleRecipe } from './app.js';
 
 function fixRecipeItems(input) {
   console.log('fixRecipeItems');
