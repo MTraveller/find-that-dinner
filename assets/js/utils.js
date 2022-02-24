@@ -5,10 +5,14 @@ import { displayRecipes, displaySingleRecipe } from './app.js';
 function genRecipe(locatedRecipe) {
   console.log(locatedRecipe);
   // Temp reused generation code of recipeCardsGen()
-  const genRecipeHTML = `<figure class="recipe-image"><img src="${locatedRecipe.recipe.image}" title="${locatedRecipe.recipe.label}" alt="${locatedRecipe.recipe.label}"></figure>
-    <h2 class="recipe-title">${locatedRecipe.recipe.label}</h2>
-    <span class="recipe-info">${Math.floor(locatedRecipe.recipe.calories)} calories</span><span class="recipe-info-divider">|</span><span class="recipe-info">${locatedRecipe.recipe.ingredients.length} ingredients</span>
-    <h3 class="recipe-source">${locatedRecipe.recipe.source}</h3>`;
+  console.log(locatedRecipe.recipe.dietLabels.length);
+  const genRecipeHTML = 
+    `<h2 class="recipe-title">${locatedRecipe.recipe.label}</h2>
+     <figure class="recipe-image"><img src="${locatedRecipe.recipe.image}" title="${locatedRecipe.recipe.label}" alt="${locatedRecipe.recipe.label}"></figure>
+     <h3>Cuisine: ${locatedRecipe.recipe.cuisineType}</h3>
+     ${locatedRecipe.recipe.dietLabels.length === 0 ? '' : `${locatedRecipe.recipe.dietLabels.length === 1 ? `<h3>Diet: ${locatedRecipe.recipe.dietLabels[0]}</h3>` : `<h3>Diet: ${locatedRecipe.recipe.dietLabels[0]}, ${locatedRecipe.recipe.dietLabels[1]}</h3>`}`}
+     <button><a href="${locatedRecipe.recipe.url}" target="_blank">See recipe on: ${locatedRecipe.recipe.source}</a></button>`
+  ;
 
   displaySingleRecipe(genRecipeHTML);
 }
