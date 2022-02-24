@@ -1,3 +1,4 @@
+// Imports, to be used
 import { recipeCardsGen } from './utils.js'
 
 // Break up the URL from / to the query
@@ -12,9 +13,9 @@ async function fetchRecipes(query) {
   const response = await fetch(`${firstEndpoint}${query}${lastEndpoint}`);
   const data = await response.json();
   const results = data.hits;
-  recipeCardsGen(results);
 
-  return fetchResults = [...results];
+  return fetchResults = [...results] && recipeCardsGen(results);
 }
 
+// Exports, to be used in other JS files
 export { fetchRecipes, fetchResults };
