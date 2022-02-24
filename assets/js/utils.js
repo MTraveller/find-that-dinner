@@ -1,10 +1,6 @@
+// Imports, to be used
 import { fetchRecipes, fetchResults } from './apis.js';
 import { displayRecipes, displaySingleRecipe } from './app.js';
-
-function fixRecipeItems(input) {
-  console.log('fixRecipeItems');
-  console.dir(input);
-}
 
 function genRecipe(locatedRecipe) {
   console.log(locatedRecipe);
@@ -49,4 +45,5 @@ async function fetchSubmit(e) {
     formButton.search.disabled = false;
 }
 
+// Exports, to be used in other JS files
 export { fetchSubmit, fetchRecipe, recipeCardsGen };
