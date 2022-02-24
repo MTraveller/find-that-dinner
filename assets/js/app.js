@@ -1,3 +1,4 @@
+// Imports, to be used
 import { recipesGrid, grabRecipeCard } from './handlers.js';
 
 function displaySingleRecipe(producedSingleHTML) {
@@ -22,4 +23,5 @@ function displayRecipes(producedHTML) {
   grabRecipeCard();
 }
 
+// Exports, to be used in other JS files
 export { displayRecipes, displaySingleRecipe };
