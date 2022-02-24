@@ -1,5 +1,9 @@
 import { recipesGrid, grabRecipeCard } from './handlers.js';
 
+function displaySingleRecipe(producedSingleHTML) {
+  console.log(producedSingleHTML);
+}
+
 // Function that extracts the info from the returned api response and loops over each item
 function displayRecipes(producedHTML) {
   let cardDivs = recipesGrid.querySelectorAll('.recipe-card');
@@ -31,4 +35,4 @@ function displayRecipes(producedHTML) {
   grabRecipeCard();
 }
 
-export { displayRecipes };
+export { displayRecipes, displaySingleRecipe };
