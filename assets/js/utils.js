@@ -4,12 +4,13 @@ import { displayRecipes } from './scripts.js';
 let results = [];
 
 function fetchRecipe(recipeLabel) {
-  console.log(results);
   console.log(recipeLabel);
 }
 
 // Generate the html for the recipeCards
 function recipeCardsGen(recipes) {
+  // Temporary console.log here to not trigger on every click in fetchRecipe()
+  console.log(results);
   const genHTML = recipes.map((item) =>    
     `<figure class="recipe-card-image"><img src="${item.recipe.images.REGULAR.url}" title="${item.recipe.label}" alt="${item.recipe.label}"></figure>
       <h2 class="recipe-card-title">${item.recipe.label}</h2>
