@@ -1,10 +1,21 @@
 import { firstEndpoint, lastEndpoint } from './apis.js';
-import { displayRecipes } from './scripts.js';
+import { displayRecipes, displaySingleRecipe } from './scripts.js';
 
 let results = [];
 
+function fixRecipeItems(input) {
+  console.log('Result' + '\n' + input);
+}
+
 function genRecipe(locatedRecipe) {
   console.log(locatedRecipe);
+  // Temp reused generation code of recipeCardsGen()
+  const genRecipeHTML = `<figure class="recipe-image"><img src="${locatedRecipe.recipe.image}" title="${locatedRecipe.recipe.label}" alt="${locatedRecipe.recipe.label}"></figure>
+    <h2 class="recipe-title">${locatedRecipe.recipe.label}</h2>
+    <span class="recipe-info">${Math.floor(locatedRecipe.recipe.calories)} calories</span><span class="recipe-info-divider">|</span><span class="recipe-info">${locatedRecipe.recipe.ingredients.length} ingredients</span>
+    <h3 class="recipe-source">${locatedRecipe.recipe.source}</h3>`;
+
+  displaySingleRecipe(genRecipeHTML);
 }
 
 function fetchRecipe(recipeLabel, data = results) {
@@ -14,13 +25,14 @@ function fetchRecipe(recipeLabel, data = results) {
 
 // Generate the html for the recipeCards
 function recipeCardsGen(recipes) {
-  const genHTML = recipes.map((item) =>    
+  fixRecipeItems(recipes);
+  const genCardsHTML = recipes.map((item) =>    
     `<figure class="recipe-card-image"><img src="${item.recipe.images.REGULAR.url}" title="${item.recipe.label}" alt="${item.recipe.label}"></figure>
       <h2 class="recipe-card-title">${item.recipe.label}</h2>
       <span class="recipe-card-info">${Math.floor(item.recipe.calories)} calories</span><span class="recipe-card-info-divider">|</span><span class="recipe-card-info">${item.recipe.ingredients.length} ingredients</span>
       <h3 class="recipe-card-source">${item.recipe.source}</h3>`
   );
-  displayRecipes(genHTML);
+  displayRecipes(genCardsHTML);
 }
 
 // Fetches the search from api.edemame.com
