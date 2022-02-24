@@ -1,5 +1,7 @@
-import { form } from './forms.js';
+// Imports, to be used
 import { fetchSubmit, fetchRecipe } from './utils.js';
+
+const form = document.querySelector('[name="search"]');
 
 const recipesGrid = document.querySelector('.recipes');
 
@@ -18,4 +20,5 @@ function grabRecipeCard() {
 form.addEventListener('submit', fetchSubmit);
 form.addEventListener('enter', fetchSubmit);
 
+// Exports, to be used in other JS files
 export { recipesGrid, grabRecipeCard };
