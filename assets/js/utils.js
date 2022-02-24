@@ -1,10 +1,9 @@
-import { firstEndpoint, lastEndpoint } from './apis.js';
+import { fetchRecipes, fetchResults } from './apis.js';
 import { displayRecipes, displaySingleRecipe } from './scripts.js';
 
-let results = [];
-
 function fixRecipeItems(input) {
-  console.log('Result' + '\n' + input);
+  console.log('fixRecipeItems');
+  console.dir(input);
 }
 
 function genRecipe(locatedRecipe) {
@@ -18,7 +17,7 @@ function genRecipe(locatedRecipe) {
   displaySingleRecipe(genRecipeHTML);
 }
 
-function fetchRecipe(recipeLabel, data = results) {
+function fetchRecipe(recipeLabel, data = fetchResults) {
   const fullRecipe = data.find(item => item.recipe.label === recipeLabel);
   genRecipe(fullRecipe);
 }
@@ -35,14 +34,6 @@ function recipeCardsGen(recipes) {
   displayRecipes(genCardsHTML);
 }
 
-// Fetches the search from api.edemame.com
-async function fetchRecipes(query) {
-    const response = await fetch(`${firstEndpoint}${query}${lastEndpoint}`);
-    const data = await response.json();
-    const results = data.hits;
-    return results;
-}
-
 // Sends the search request to fetchRecipes()
 async function fetchSubmit(e) {
     e.preventDefault();
@@ -53,12 +44,9 @@ async function fetchSubmit(e) {
   
     // Fetch and display the results of the searched keyword
     const recipesResults = await fetchRecipes(formButton.keyword.value);
-    recipeCardsGen(recipesResults);
-  
+      
     // Enable the search button again
     formButton.search.disabled = false;
-
-    return results = [...recipesResults];
 }
 
-export { fetchSubmit, fetchRecipe };
+export { fetchSubmit, fetchRecipe, recipeCardsGen };
