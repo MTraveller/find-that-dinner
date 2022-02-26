@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+body {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-rows: 60px 60px 1fr 50px;
+  grid-template-areas: 
+    "left header right"
+    "left search right"
+    "left content right"
+    "footer footer footer";
+}
+
+header {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  grid-area: header;
+}
+
+.search {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  grid-area: search;
+}
+
+.recipes {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-area: content;
+}
+
+.recipes .recipe-card {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "image image"
+    "title title"
+    "cal igr"
+    "source source";
+  align-items: baseline;
+}
+
+.recipe-card-image {
+  margin: 0;
+  grid-area: image;
+}
+.recipe-card-image img {
+  width: 100%;
+}
+.recipe-card-title {
+  grid-area: title;
+}
+.recipe-card-info-cal {
+  grid-area: cal;
+}
+.recipe-card-info-igr {
+  grid-area: igr;
+}
+.recipe-card-source {
+  grid-area: source;
+}
+
+.recipe-card-single {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  background-color: #FFFFFF;
+}
+
+.recipe-card-single {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: 
+    "X X X X"
+    "image igr igr igr"
+    "image igr igr igr"
+    "share igr igr igr"
+    "source source source source";
+}
+
+.close-modal {
+  grid-area: X;
+  grid-column: span 1;
+  grid-row: span 1;
+  grid-column-start: end;
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 40px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
