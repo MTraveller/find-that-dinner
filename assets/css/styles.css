@@ -76,21 +76,17 @@ header {
 }
 
 .recipe-card-single {
-  width: 100%;
-  height: auto;
+  width: 100vh;
+  height: 100vw;
   position: absolute;
-  background-color: #FFFFFF;
-}
-
-.recipe-card-single {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 86px);
   grid-template-areas: 
-    "X X X X"
-    "image igr igr igr"
-    "image igr igr igr"
-    "share igr igr igr"
-    "source source source source";
+    "X X X"
+    "article article article";
+  background-color: #FFFFFF;
+  height: 100vh;
 }
 
 .close-modal {
@@ -107,3 +103,17 @@ header {
   cursor: pointer;
 }
 
+article {
+  grid-area: article;
+  grid-column: span 2;
+  grid-row: 1 / 6;
+  overflow-y: scroll;
+}
+
+.recipe-image {
+  grid-area: image;
+  grid-column: span 1;
+  grid-row: span 1;
+  grid-column-start: start;
+  border-radius: 10px;
+}
