@@ -64,9 +64,8 @@ function genRecipe(recipe) {
      <section id="google-chart"></section>
      <section class="share-recipe">
       <h3>Share recipe</h3>
-      <figure class="icon"><img src="./assets/images/email.png"><figcaption>Email</figcaption></figure>
-      <figure class="icon"><img src="./assets/images/whatsapp.png"><figcaption>Whatsapp</figcaption></figure>
-      <figure class="icon"><img src="./assets/images/facebook-messenger.png"><figcaption>Messenger</figcaption></figure>
+      <figure class="icon"><a href="mailto:?subject=Interesting Recipe&amp;body=Check out this recipe at: ${recipe.url}" title="Share by Email"><img src="./assets/images/email.png"></a><figcaption>Email</figcaption></figure>
+      <figure class="icon"><a href="whatsapp://send?text=${recipe.url}" data-action="share/whatsapp/share"><img src="./assets/images/whatsapp.png"></a><figcaption>Whatsapp</figcaption></figure>
      </section>
      <button><a href="${recipe.url}" target="_blank">See recipe on: ${recipe.source}</a></button>
     </article>`
@@ -105,19 +104,19 @@ function recipeCardsGen(recipes) {
 }
 
 // Sends the search request to fetchRecipes()
-async function fetchSubmit(e) {
-    // Prevent form input default
-    e.preventDefault();
-    const formButton = e.currentTarget;
+function fetchSubmit(e) {
+  // Prevent form input default
+  e.preventDefault();
+  const formButton = e.currentTarget;
 
-    // Temporary disable the search button
-    formButton.search.disabled = true;
+  // Temporary disable the search button
+  formButton.search.disabled = true;
+  
+  // Fetch and display the results of the searched keyword
+  fetchRecipes(formButton.keyword.value);
 
-    // Fetch and display the results of the searched keyword
-    await fetchRecipes(formButton.keyword.value);
-
-    // Enable the search button again
-    formButton.search.disabled = false;
+  // Enable the search button again
+  formButton.search.disabled = false;
 }
 
 // Exports, to be used in other JS files
