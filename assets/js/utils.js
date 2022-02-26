@@ -35,7 +35,7 @@ function drawChart() {
     'pieHole' : 0.3,
   };
 
-  // Instantiate and draw our chart, passing in some options.
+  // Instantiate and draw the chart, passing in some options.
   const chart = new google.visualization.PieChart(body.querySelector('#google-chart'));
   chart.draw(data, options);
 }
@@ -94,9 +94,9 @@ async function fetchRecipe(recipeLabel, data = fetchResults) {
 // Generate the html for the recipeCards
 function recipeCardsGen(recipes) {
   const genCardsHTML = recipes.map(item =>
-    `<figure class="recipe-card-image"><img loading="lazy" src="${item.recipe.images.REGULAR.url}" title="${item.recipe.label}" alt="${item.recipe.label}"></figure>
+    `<figure class="recipe-card-image"><img loading="lazy" src="${item.recipe.image}" title="${item.recipe.label}" alt="${item.recipe.label}"></figure>
       <h2 class="recipe-card-title">${item.recipe.label}</h2>
-      <span class="recipe-card-info">${Math.floor(item.recipe.calories)} calories</span><span class="recipe-card-info-divider">|</span><span class="recipe-card-info">${item.recipe.ingredients.length} ingredients</span>
+      <span class="recipe-card-cal">${Math.floor(item.recipe.calories)} calories</span><span class="recipe-card-igr">${item.recipe.ingredients.length} ingredients</span>
       <h3 class="recipe-card-source">${item.recipe.source}</h3>`
   );
   // Run displayRecipes function from app.js
