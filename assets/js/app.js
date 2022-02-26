@@ -10,11 +10,16 @@ function displaySingleRecipe(producedSingleHTML) {
   // Check 'aside' exists and remove it if it does to be replaced by the new clicked recipe
   if (recipeCard) body.removeChild( body.firstChild );
 
-  // Create aside modal and print it on the document
-  let cardAside = document.createElement('section');
-  cardAside.classList.add('recipe-card-single');
-  cardAside.innerHTML = producedSingleHTML;
-  body.prepend(cardAside);
+  // Create aside modal
+  let cardSection = document.createElement('section');
+  cardSection.classList.add('recipe-card-single');
+  cardSection.innerHTML = producedSingleHTML;
+
+  // Temporary add class to body
+  body.classList.add('darken');
+
+  //  Print single recipe on the document
+  body.prepend(cardSection);
 
   // Set a callback to run when the Google Visualization API is loaded.
   google.charts.setOnLoadCallback(drawChart);
