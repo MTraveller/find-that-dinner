@@ -1,22 +1,28 @@
 // Imports, to be used
-import { recipesGrid, grabRecipeCard, body, handleCloseModal } from './handlers.js';
+import { recipesGrid, grabRecipeCard, body, content, handleCloseModal } from './handlers.js';
 import { drawChart } from './utils.js';
+
+let posY = 0;
 
 function displaySingleRecipe(producedSingleHTML) {
   console.log(producedSingleHTML);
   // Grabs the aside after it has been printed on document
-  const recipeCard = body.querySelector('section');
+  const recipeCard = body.querySelector('.recipe-card-single');
 
   // Check 'aside' exists and remove it if it does to be replaced by the new clicked recipe
-  if (recipeCard) body.removeChild( body.firstChild );
+  if (recipeCard) body.removeChild(body.firstChild);
 
   // Create aside modal
   const cardSection = document.createElement('section');
   cardSection.classList.add('recipe-card-single');
   cardSection.innerHTML = producedSingleHTML;
 
-  // Temporary add class to body
-  body.classList.add('fixed');
+  // Body top position relative to the browser's viewport code from
+  posY = body.getBoundingClientRect().top;
+
+  // Temporary add class to content
+  // content.classList.add('hidden');
+  content.style.display = 'none';
 
   //  Print single recipe on the document
   body.prepend(cardSection);
@@ -48,4 +54,4 @@ function displayRecipes(producedHTML) {
 }
 
 // Exports, to be used in other JS files
-export { displayRecipes, displaySingleRecipe };
+export { displayRecipes, displaySingleRecipe, posY };
