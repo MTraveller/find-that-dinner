@@ -10,7 +10,7 @@ const recipesGrid = body.querySelector('.recipes');
 function closeModal(e) {
   if (e.currentTarget) body.removeChild( body.firstChild );
   // Remove added class to body
-  body.classList.remove('darken');
+  body.classList.remove('fixed');
 }
 
 // Select and add an eventListener once to close the modal
