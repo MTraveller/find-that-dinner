@@ -3,24 +3,16 @@
   padding: 0;
   list-style-type: none;
 }
-body {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: 1fr 5fr 1fr;
-  grid-template-rows: 60px 60px 1fr 50px;
-  grid-template-areas: 
-    "left header right"
-    "left search right"
-    "left content right"
-    "footer footer footer";
+
+.hidden {
+  visibility: hidden;
 }
 
-.darken {
-  position: fixed;
-  background-color: rgba(0,0,0,0.9);
+.disabled {
+  overflow: hidden;
 }
 
-header {
+.title {
   display: grid;
   gap: 20px;
   grid-template-columns: 3fr 1fr;
@@ -45,14 +37,12 @@ header {
 .recipes .recipe-card {
   display: grid;
   gap: 10px;
-  grid-template-columns: 1fr;
   grid-template-rows: auto;
   grid-template-areas: 
     "image image"
     "title title"
     "cal igr"
     "source source";
-  align-items: baseline;
 }
 
 .recipe-card-image {
@@ -76,26 +66,19 @@ header {
 }
 
 .recipe-card-single {
-  width: 100vh;
-  height: 100vw;
-  position: absolute;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(1, 86px);
-  grid-template-areas: 
-    "X X X"
-    "article article article";
   background-color: #FFFFFF;
+  overflow-y: scroll;
   height: 100vh;
+  display: grid;
+  justify-content: center;
 }
 
 .close-modal {
-  grid-area: X;
-  grid-column: span 1;
-  grid-row: span 1;
-  grid-column-start: end;
-  margin: 10px;
-  padding: 10px 20px;
+  position: fixed;
+  z-index: 10;
+  top: 20px;
+  right: 36px;
+  padding: 6px 18px 12px;
   font-size: 40px;
   background-color: black;
   color: white;
@@ -103,17 +86,49 @@ header {
   cursor: pointer;
 }
 
-article {
-  grid-area: article;
-  grid-column: span 2;
-  grid-row: 1 / 6;
-  overflow-y: scroll;
+.recipe-header {
+  display: grid;
+  justify-content: center;
 }
 
-.recipe-image {
-  grid-area: image;
-  grid-column: span 1;
-  grid-row: span 1;
-  grid-column-start: start;
-  border-radius: 10px;
+.recipe-info {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
+.recipe-ingredients {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.recipe-ingredient {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 100px 200px;;
+  align-items: center;
+}
+
+.recipe-ingredient figcaption {
+  font-size: 1.4rem;
+}
+
+.recipe-ingredient img {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.recipe-share{
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+
+.recipe-share h3 {
+  grid-column: 1 / -1;
 }
