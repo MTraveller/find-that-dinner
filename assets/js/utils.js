@@ -19,16 +19,16 @@ function drawChart() {
   data.addColumn('string', 'Topping');
   data.addColumn('number', 'Slices');
   data.addRows([
-    [fetchedRecipe.totalNutrients.FAT.label, Math.floor(fetchedRecipe.totalNutrients.FAT.quantity)],
-    [fetchedRecipe.totalNutrients.CHOLE.label, Math.floor(fetchedRecipe.totalNutrients.CHOLE.quantity/1000)],
-    [fetchedRecipe.totalNutrients.NA.label, Math.floor(fetchedRecipe.totalNutrients.NA.quantity/1000)],
-    [fetchedRecipe.totalNutrients.CHOCDF.label, Math.floor(fetchedRecipe.totalNutrients.CHOCDF.quantity)],
-    [fetchedRecipe.totalNutrients.PROCNT.label, Math.floor(fetchedRecipe.totalNutrients.PROCNT.quantity)],
+    [fetchedRecipe.totalNutrients.FAT.label, Math.floor(Math.ceil(fetchedRecipe.totalNutrients.FAT.quantity)/fetchedRecipe.yield)],
+    [fetchedRecipe.totalNutrients.CHOLE.label, Math.floor((Math.ceil(fetchedRecipe.totalNutrients.CHOLE.quantity/1000))/fetchedRecipe.yield)],
+    [fetchedRecipe.totalNutrients.NA.label, Math.floor(Math.ceil(fetchedRecipe.totalNutrients.NA.quantity/1000)/fetchedRecipe.yield)],
+    [fetchedRecipe.totalNutrients.CHOCDF.label, Math.floor(Math.ceil(fetchedRecipe.totalNutrients.CHOCDF.quantity)/fetchedRecipe.yield)],
+    [fetchedRecipe.totalNutrients.PROCNT.label, Math.floor(Math.ceil(fetchedRecipe.totalNutrients.PROCNT.quantity)/fetchedRecipe.yield)],
   ]);
 
   // Set chart options
   const options = {
-    'title' : 'Recipe nutrients in grams',
+    'title' : `Recipe nutrients in grams based on ${fetchedRecipe.yield < 1 ? `${fetchedRecipe.yield} serving` : `${fetchedRecipe.yield} servings`}`,
     'pieSliceText' : 'value',
     'width' : 400,
     'height' : 300,
@@ -46,31 +46,35 @@ function genRecipe(recipe) {
   console.log(recipe);
 
   // Grab the info from the recipes array and generate the html for the clicked recipe
-  const genRecipeHTML =
-    `<span class="close-modal">X</span>
+  const genRecipeHTML = `
+    <span class="close-modal">✘</span>
     <article>
-     <h2 class="recipe-title">${recipe.label}</h2>
-     <figure class="recipe-image"><img src="${recipe.image}" title="${recipe.label}" alt="${recipe.label}"></figure>
-     <section>
-      <h3>Cuisine: ${recipe.cuisineType}</h3>
-      ${(recipe.dietLabels.length === 0 ? '' :
-      `${recipe.dietLabels.length === 1 ? `<h3>Diet: ${recipe.dietLabels[0]}</h3>` :
-      `<h3>Diet: ${recipe.dietLabels[0]}, ${recipe.dietLabels[1]}</h3>`}`)}
+     <header class="recipe-header">
+      <h2 class="recipe-title">${recipe.label}</h2>
+      <section class="recipe-info">
+        <figure class="recipe-image"><picture><img src="${recipe.image && `${recipe.image}`}" title="${recipe.label}" alt="${recipe.label}"></picture></figure>
+        <div>
+          <h3>Cuisine: ${recipe.cuisineType}</h3>
+          ${(recipe.dietLabels.length === 0 ? '' :
+          `${recipe.dietLabels.length === 1 ? `<h3>Diet: ${recipe.dietLabels[0]}</h3>` :
+          `<h3>Diet: ${recipe.dietLabels[0]}, ${recipe.dietLabels[1]}</h3>`}`)}
+          <div id="google-chart"></div>
+        </div>
+      </section>
+     </header>
+     <h3>Ingredients:</h3>
+     <section class="recipe-ingredients">
+      ${(recipe.ingredients.map(idx => `<figure class="recipe-ingredient"><picture><img loading="lazy" src="${idx.image && `${idx.image}`}" title="${idx.food}" alt="${idx.food}"></picture><figcaption>${idx.text}</figcaption></figure>`).join(''))}
      </section>
-     <section>
-      <h3>Ingredients:</h3>
-      ${(recipe.ingredients.map(idx => `<figure><picture><img loading="lazy" src="${idx.image}" title="${idx.food}" alt="${idx.food}"></picture></figure><h4>${idx.text}</h4>`).join(''))}
-     </section>
-     <section id="google-chart"></section>
-     <section class="share-recipe">
+     <div class="recipe-share">
       <h3>Share recipe</h3>
       <figure class="icon"><a href="mailto:?subject=Interesting Recipe&amp;body=Check out this recipe at: ${recipe.url}" title="Share by Email"><img src="./assets/images/email.png"></a><figcaption>Email</figcaption></figure>
       <figure class="icon"><a href="whatsapp://send?text=${recipe.url}" data-action="share/whatsapp/share"><img src="./assets/images/whatsapp.png"></a><figcaption>Whatsapp</figcaption></figure>
-     </section>
-     <button><a href="${recipe.url}" target="_blank">See recipe on: ${recipe.source}</a></button>
+      <button><a href="${recipe.url}" target="_blank">See recipe on: ${recipe.source}</a></button>
+     </div>
     </article>`
   ;
-
+  
   // Run displaySingleRecipe from app.js to display the generated recipe
   displaySingleRecipe(genRecipeHTML);
 }
@@ -104,7 +108,7 @@ function recipeCardsGen(recipes) {
 }
 
 // Sends the search request to fetchRecipes()
-function fetchSubmit(e) {
+async function fetchSubmit(e) {
   // Prevent form input default
   e.preventDefault();
   const formButton = e.currentTarget;
@@ -113,7 +117,7 @@ function fetchSubmit(e) {
   formButton.search.disabled = true;
   
   // Fetch and display the results of the searched keyword
-  fetchRecipes(formButton.keyword.value);
+  await fetchRecipes(formButton.keyword.value);
 
   // Enable the search button again
   formButton.search.disabled = false;
