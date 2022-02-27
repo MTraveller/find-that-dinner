@@ -5,18 +5,18 @@ import { drawChart } from './utils.js';
 function displaySingleRecipe(producedSingleHTML) {
   console.log(producedSingleHTML);
   // Grabs the aside after it has been printed on document
-  let recipeCard = body.querySelector('section');
+  const recipeCard = body.querySelector('section');
 
   // Check 'aside' exists and remove it if it does to be replaced by the new clicked recipe
   if (recipeCard) body.removeChild( body.firstChild );
 
   // Create aside modal
-  let cardSection = document.createElement('section');
+  const cardSection = document.createElement('section');
   cardSection.classList.add('recipe-card-single');
   cardSection.innerHTML = producedSingleHTML;
 
   // Temporary add class to body
-  body.classList.add('darken');
+  body.classList.add('fixed');
 
   //  Print single recipe on the document
   body.prepend(cardSection);
