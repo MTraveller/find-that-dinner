@@ -1,16 +1,23 @@
 // Imports, to be used
 import { fetchSubmit, fetchRecipe } from './utils.js';
+import { posY } from './app.js';
 
 // Query selectors
 const body = document.querySelector('body');
-const form = body.querySelector('[name="search"]');
-const recipesGrid = body.querySelector('.recipes');
+const content = body.querySelector('.content');
+const form = content.querySelector('[name="search"]');
+const recipesGrid = content.querySelector('.recipes');
 
 // Function to remove the modal
 function closeModal(e) {
-  if (e.currentTarget) body.removeChild( body.firstChild );
-  // Remove added class to body
-  body.classList.remove('fixed');
+  if (e.currentTarget) body.removeChild(body.firstChild);
+
+  // Remove added class to content
+  content.style.removeProperty('display');
+
+  // Scroll to position
+  window.scrollTo(0, Math.abs(posY));
+  console.log('Should be ' + Math.abs(posY));
 }
 
 // Select and add an eventListener once to close the modal
@@ -39,4 +46,4 @@ form.addEventListener('submit', fetchSubmit);
 form.addEventListener('enter', fetchSubmit);
 
 // Exports, to be used in other JS files
-export { recipesGrid, grabRecipeCard, body, handleCloseModal };
+export { recipesGrid, grabRecipeCard, body, content, handleCloseModal };
