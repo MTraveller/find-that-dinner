@@ -3,7 +3,7 @@ import { recipesGrid, grabRecipeCard, body, cardSection, handleCloseModal } from
 import { displayGooglePie } from './utils.js';
 
 function displaySingleRecipe(producedSingleHTML) {
-  // Grab the section
+  // Grab the recipe section modal
   const recipeCard = body.querySelector('article');
 
   // Check if 'article' element exists and remove it if it does, to be replaced by the new clicked recipe
@@ -16,15 +16,16 @@ function displaySingleRecipe(producedSingleHTML) {
   // Temporary add class to content
   body.style.overflow = 'hidden';
 
+  // Temporary add class to section
   cardSection.classList.add('active');
 
   // Print single recipe on the document
   cardSection.prepend(cardArticle);
 
-  // Run the google pie api
+  // Run the google pie api in utils.js
   displayGooglePie();
 
-  // Fire the close modal eventListener
+  // Fire the close modal eventListener in handlers.js
   handleCloseModal();
 }
 
@@ -43,7 +44,7 @@ function displayRecipes(producedHTML) {
     recipesGrid.appendChild(cardDiv);
   });
 
-  // Run function grabRecipeCard handlers.js
+  // Run function grabRecipeCard in handlers.js
   grabRecipeCard();
 }
 
