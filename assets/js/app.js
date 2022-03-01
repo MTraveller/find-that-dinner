@@ -1,8 +1,8 @@
 // Imports, to be used
-import { recipesGrid, grabRecipeCard, body, content, handleCloseModal } from './handlers.js';
+import { recipesGrid, grabRecipeCard, body, /*content,*/ handleCloseModal } from './handlers.js';
 import { drawChart } from './utils.js';
 
-let posY = 0;
+// let posY = 0;
 
 function displaySingleRecipe(producedSingleHTML) {
   console.log(producedSingleHTML);
@@ -18,14 +18,18 @@ function displaySingleRecipe(producedSingleHTML) {
   cardSection.innerHTML = producedSingleHTML;
 
   // Body top position relative to the browser's viewport code from
-  posY = body.getBoundingClientRect().top;
+  // posY = body.getBoundingClientRect().top;
 
   // Temporary add class to content
-  // content.classList.add('hidden');
-  content.style.display = 'none';
+  body.style.overflow = 'hidden';
+
+  // content.style.display = 'none';
+  cardSection.style.display = 'block';
 
   //  Print single recipe on the document
   body.prepend(cardSection);
+
+  // window.scrollTo(0, 0);
 
   // Set a callback to run when the Google Visualization API is loaded.
   google.charts.setOnLoadCallback(drawChart);
@@ -54,4 +58,4 @@ function displayRecipes(producedHTML) {
 }
 
 // Exports, to be used in other JS files
-export { displayRecipes, displaySingleRecipe, posY };
+export { displayRecipes, displaySingleRecipe/*, posY*/ };
