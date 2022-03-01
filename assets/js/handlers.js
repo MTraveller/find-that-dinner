@@ -1,6 +1,5 @@
 // Imports, to be used
 import { fetchSubmit, fetchRecipe } from './utils.js';
-// import { posY } from './app.js';
 
 // Query selectors
 const body = document.querySelector('body');
@@ -14,11 +13,6 @@ function closeModal(e) {
 
   // Remove added classes
   body.style.removeProperty('overflow');
-  // content.style.removeProperty('display');
-
-  // Scroll to position
-  // window.scrollTo(0, Math.abs(posY));
-  // console.log('Should be ' + Math.abs(posY));
 }
 
 // Select and add an eventListener once to close the modal
