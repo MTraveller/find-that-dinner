@@ -11,11 +11,11 @@ function handleError(err) {
 
 // Function to load google pie after the modal has loaded
 function displayGooglePie() {
-    // Load the Visualization API and the corechart package.
-    google.charts.load('current', {'packages':['corechart']});
+  // Load the Visualization API and the corechart package.
+  google.charts.load('current', {'packages':['corechart']});
 
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawChart);
+  // Set a callback to run when the Google Visualization API is loaded.
+  google.charts.setOnLoadCallback(drawChart);
 }
 
 // Callback that creates and populates a data table,
@@ -88,7 +88,7 @@ function genRecipe(recipe) {
      </aside>`
   ;
   
-  // Run displaySingleRecipe from app.js to display the generated recipe
+  // Run displaySingleRecipe in app.js to display the generated recipe
   displaySingleRecipe(genRecipeHTML);
 }
 
@@ -109,7 +109,7 @@ async function fetchRecipe(recipeLabel, data = fetchResults) {
 // Generate the html for the recipeCards
 function recipeCardsGen(recipes) {
   const genCardsHTML = recipes.map(item =>
-    `<figure class="recipe-card-image"><img loading="lazy" src="${item.recipe.image}" title="${item.recipe.label}" alt="${item.recipe.label}"></figure>
+    `<figure class="recipe-card-image"><img loading="lazy" src="${item.recipe.image && `${item.recipe.image}`}" title="${item.recipe.label}" alt="${item.recipe.label}"></figure>
       <h2 class="recipe-card-title">${item.recipe.label}</h2>
       <span class="recipe-card-cal">${Math.floor(item.recipe.calories)} calories</span><span class="recipe-card-igr">${item.recipe.ingredients.length} ingredients</span>
       <h3 class="recipe-card-source">${item.recipe.source}</h3>`
