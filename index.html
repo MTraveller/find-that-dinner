@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -9,15 +9,16 @@
 </head>
 <body>
   <noscript>Your browser does not support JavaScript!</noscript>
+  <header class="title"><h1><a href="/">Find That Dinner</a></h1><menu><li>Help</li></menu></header>
   <main class="content">
-    <header class="title"><h1>Find That Dinner</h1><menu><li>Help</li></menu></header>
     <form class="search" name="search">
       <label for="search-recipe">Search Recipe:</label>
-      <input required type="text" id="search-recipe" name="keyword" placeholder="Search a recipe by (e.g. chicken, beef, salmon etc.)">
+      <input required type="text" id="search-recipe" name="keyword" placeholder="Type (e.g. chicken, beef, salmon etc.)">
       <input type="submit" name="search" value="Submit">
     </form>
     <section class="recipes"></section>
   </main>
+  <footer>© Find That Dinner by MT for educational purposes</footer>
   <script type="module" src="./assets/js/app.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </body>
