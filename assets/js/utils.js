@@ -28,7 +28,7 @@ function drawChart() {
 
   // Set chart options
   const options = {
-    title : `Grams based on ${fetchedRecipe.yield < 1 ? `${fetchedRecipe.yield} serving` : `${fetchedRecipe.yield} servings`}`,
+    title : `Grams Per Serving Based of ${fetchedRecipe.yield < 1 ? `${fetchedRecipe.yield} Serving` : `${fetchedRecipe.yield} Servings`}`,
     pieSliceText : 'value',
     pieHole : 0.3,
     chartArea : {
