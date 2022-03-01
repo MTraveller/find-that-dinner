@@ -9,8 +9,12 @@ function handleError(err) {
   alert('Ooops.. Something went wrong. Reason: ' + err);
 }
 
-// Function to load google pie after the modal has loaded
-function displayGooglePie() {
+function genHelp() {
+  console.log('generating html');
+}
+
+// Function to generate google pie on recipe load
+function genGooglePie() {
   // Load the Visualization API and the corechart package.
   google.charts.load('current', {'packages':['corechart']});
 
@@ -135,4 +139,4 @@ async function fetchSubmit(e) {
 }
 
 // Exports, to be used in other JS files
-export { handleError, fetchSubmit, fetchRecipe, recipeCardsGen, displayGooglePie };
+export { handleError, fetchSubmit, fetchRecipe, recipeCardsGen, genGooglePie, genHelp };
