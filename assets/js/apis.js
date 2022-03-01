@@ -1,5 +1,5 @@
 // Imports, to be used
-import { recipeCardsGen } from './utils.js'
+import { recipeCardsGen, handleError } from './utils.js'
 
 // Break up the URL from / to the query
 let firstEndpoint = 'https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=';
@@ -8,12 +8,9 @@ let lastEndpoint = '&app_id=db107cf3&app_key=fe82b203fb1dcc311c67cd62001244ca&me
 // Save fetch result in a global variable
 let fetchResults = [];
 
-// Load the Visualization API and the corechart package.
-await google.charts.load('current', {'packages':['corechart']});
-
 // Fetches the search from api.edemame.com
 async function fetchRecipes(query) {
-  const response = await fetch(`${firstEndpoint}${query}${lastEndpoint}`);
+  const response = await fetch(`${firstEndpoint}${query}${lastEndpoint}`).catch(handleError);
   const data = await response.json();
   const results = data.hits;
   recipeCardsGen(results);
