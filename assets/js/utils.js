@@ -58,8 +58,7 @@ function genRecipe(recipe) {
 
   // Grab the info from the recipes array and generate the html for the clicked recipe
   const genRecipeHTML = `
-    <article>
-     <div class="close-button"><span class="close-modal">✘</span></div>
+    <div class="close-button"><span class="close-modal">✘</span></div>
      <header class="recipe-header">
       <h2 class="recipe-title">${recipe.label}</h2>
       <section class="recipe-info">
@@ -84,10 +83,9 @@ function genRecipe(recipe) {
       <div class="recipe-share">
         <figure class="icon"><a href="mailto:?subject=Interesting Recipe&amp;body=Check out this recipe at: ${recipe.url}" title="Share by Email"><img src="./assets/images/email.png"></a><figcaption>Email</figcaption></figure>
         <figure class="icon"><a href="whatsapp://send?text=${recipe.url}" data-action="share/whatsapp/share"><img src="./assets/images/whatsapp.png"></a><figcaption>Whatsapp</figcaption></figure>
-        <button><a href="${recipe.url}" target="_blank">See recipe on: ${recipe.source}</a></button>
+        <a href="${recipe.url}" target="_blank"><button>See recipe on: ${recipe.source}</button></a>
       </div>
-     </aside>
-    </article>`
+     </aside>`
   ;
   
   // Run displaySingleRecipe from app.js to display the generated recipe
@@ -105,8 +103,6 @@ async function fetchRecipe(recipeLabel, data = fetchResults) {
   genRecipe(recipe);
 
   fetchedRecipe = recipe;
-  console.log(fetchedRecipe);
-  console.log(typeof fetchedRecipe);
   return fetchedRecipe;
 }
 
