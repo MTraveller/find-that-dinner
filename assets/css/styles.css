@@ -72,6 +72,7 @@ button {
 
 .content {
   display: grid;
+  row-gap: 80px;
 }
 
 .title {
@@ -310,4 +311,5 @@ article {
 
 footer {
   padding: 60px 0 30px;
+  font-weight: 400;
 }
