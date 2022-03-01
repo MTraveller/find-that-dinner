@@ -1,9 +1,10 @@
 // Imports, to be used
-import { fetchSubmit, fetchRecipe } from './utils.js';
+import { fetchSubmit, fetchRecipe, genHelp } from './utils.js';
 
 // Query selectors
 const body = document.querySelector('body');
 const cardSection = body.querySelector('.recipe-card-single');
+const help = body.querySelector('.help');
 const content = body.querySelector('.content');
 const form = content.querySelector('[name="search"]');
 const recipesGrid = content.querySelector('.recipes');
@@ -46,7 +47,9 @@ function grabRecipeCard() {
   });
 }
 
-// eventListeners for the input search box
+// eventListener for help link trigger genHelp function in utils.js
+help.addEventListener('click', genHelp);
+// eventListeners for the input search box triggers fetchSubmit in utils.js
 form.addEventListener('submit', fetchSubmit);
 form.addEventListener('enter', fetchSubmit);
 
