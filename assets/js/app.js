@@ -1,33 +1,30 @@
 // Imports, to be used
-import { recipesGrid, grabRecipeCard, body, handleCloseModal } from './handlers.js';
+import { recipesGrid, grabRecipeCard, body, cardSection, handleCloseModal } from './handlers.js';
 import { displayGooglePie } from './utils.js';
 
 function displaySingleRecipe(producedSingleHTML) {
-  console.log(producedSingleHTML);
-  // Grabs the aside after it has been printed on document
-  const recipeCard = body.querySelector('.recipe-card-single');
+  // Grab the section
+  const recipeCard = body.querySelector('article');
 
-  // Check 'aside' exists and remove it if it does to be replaced by the new clicked recipe
-  if (recipeCard) body.removeChild(body.firstChild);
+  // Check if 'article' element exists and remove it if it does, to be replaced by the new clicked recipe
+  if (recipeCard) cardSection.removeChild(cardSection.firstChild);
 
-  // Create aside modal
-  const cardSection = document.createElement('section');
-  cardSection.classList.add('recipe-card-single');
-  cardSection.innerHTML = producedSingleHTML;
+  // Create article modal
+  const cardArticle = document.createElement('article');
+  cardArticle.innerHTML = producedSingleHTML;
 
   // Temporary add class to content
   body.style.overflow = 'hidden';
 
-  // Change modal display property to block
-  cardSection.style.display = 'block';
+  cardSection.classList.add('active');
 
   // Print single recipe on the document
-  body.prepend(cardSection);
+  cardSection.prepend(cardArticle);
 
   // Run the google pie api
   displayGooglePie();
 
-  // Fire the close modal eventListener once done with printing the recipe
+  // Fire the close modal eventListener
   handleCloseModal();
 }
 
