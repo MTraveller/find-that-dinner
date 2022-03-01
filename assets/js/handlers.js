@@ -3,13 +3,15 @@ import { fetchSubmit, fetchRecipe } from './utils.js';
 
 // Query selectors
 const body = document.querySelector('body');
+const cardSection = body.querySelector('.recipe-card-single');
 const content = body.querySelector('.content');
 const form = content.querySelector('[name="search"]');
 const recipesGrid = content.querySelector('.recipes');
 
 // Function to remove the modal
-function closeModal(e) {
-  if (e.currentTarget) body.removeChild(body.firstChild);
+function closeModal() {
+  // Remove added class to section
+  cardSection.classList.remove('active');
 
   // Remove added classes
   body.style.removeProperty('overflow');
@@ -19,6 +21,13 @@ function closeModal(e) {
 function handleCloseModal() {
   const modalRecipe = body.querySelector('.close-modal');
   modalRecipe.addEventListener('click', closeModal, { once: true });
+
+  window.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
 }
 
 // Function to fetch & display the clicked recipe and add an evetListener to close the modal
@@ -32,7 +41,7 @@ function handleRecipeClick(e) {
 function grabRecipeCard() {
   const recipeCards = recipesGrid.querySelectorAll('.recipe-card');
   recipeCards.forEach(function(recipeCard) {
-    recipeCard.addEventListener('click', handleRecipeClick)
+    recipeCard.addEventListener('click', handleRecipeClick);
   });
 }
 
@@ -41,4 +50,4 @@ form.addEventListener('submit', fetchSubmit);
 form.addEventListener('enter', fetchSubmit);
 
 // Exports, to be used in other JS files
-export { recipesGrid, grabRecipeCard, body, content, handleCloseModal };
+export { recipesGrid, grabRecipeCard, body, cardSection, content, handleCloseModal };
