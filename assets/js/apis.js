@@ -10,11 +10,16 @@ let fetchResults = [];
 
 // Fetches the search from api.edemame.com
 async function fetchRecipes(query) {
+  // Fetching query
   const response = await fetch(`${firstEndpoint}${query}${lastEndpoint}`).catch(handleError);
+  // Grab the json result
   const data = await response.json();
+  // Grab the data needed
   const results = data.hits;
+  // Run recipeCardsGen in utils.js
   recipeCardsGen(results);
 
+  // Spread into / make a copy of the results array
   return fetchResults = [...results];
 }
 
