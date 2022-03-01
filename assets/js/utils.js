@@ -6,7 +6,16 @@ import { body } from './handlers.js';
 let fetchedRecipe = [];
 
 function handleError(err) {
-  console.log(err);
+  alert('Ooops.. Something went wrong. Reason: ' + err);
+}
+
+// Function to load google pie after the modal has loaded
+function displayGooglePie() {
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
 }
 
 // Callback that creates and populates a data table,
@@ -15,7 +24,7 @@ function handleError(err) {
 function drawChart() {
 
   // Create the data table.
-  const data = new google.visualization.DataTable();
+  let data = new google.visualization.DataTable();
   data.addColumn('string', 'Topping');
   data.addColumn('number', 'Slices');
   data.addRows([
@@ -27,8 +36,8 @@ function drawChart() {
   ]);
 
   // Set chart options
-  const options = {
-    title : `Grams Per Serving Based of ${fetchedRecipe.yield < 1 ? `${fetchedRecipe.yield} Serving` : `${fetchedRecipe.yield} Servings`}`,
+  let options = {
+    title : `Grams Per Serving Based on ${fetchedRecipe.yield < 1 ? `${fetchedRecipe.yield} Serving` : `${fetchedRecipe.yield} Servings`}`,
     pieSliceText : 'value',
     pieHole : 0.3,
     chartArea : {
@@ -40,15 +49,12 @@ function drawChart() {
   };
 
   // Instantiate and draw the chart, passing in some options.
-  const chart = new google.visualization.PieChart(body.querySelector('#google-chart'));
+  let chart = new google.visualization.PieChart(body.querySelector('#google-chart'));
   chart.draw(data, options);
 }
 
 // Function to generate the HTML for the clicked recipe
 function genRecipe(recipe) {
-  console.log('located Recipe');
-  console.log(recipe);
-  console.log(recipe.ingredients);
 
   // Grab the info from the recipes array and generate the html for the clicked recipe
   const genRecipeHTML = `
@@ -59,13 +65,13 @@ function genRecipe(recipe) {
       <section class="recipe-info">
         <figure class="recipe-image"><picture><img src="${recipe.image && `${recipe.image}`}" title="${recipe.label}" alt="${recipe.label}"></picture></figure>
         <div class="recipe-info-details">
+          <div class="recipe-pie"><div id="google-chart" style="width: 100%; height: 100%;"></div></div>
           <div class="recipe-type">
             <span><h3>Cuisine: </h3>${recipe.cuisineType}</span>
             ${(recipe.dietLabels.length === 0 ? '' :
             `${recipe.dietLabels.length === 1 ? `<span><h3>Diet: </h3>${recipe.dietLabels[0]}</span>` :
             `<span><h3>Diet: </h3>${recipe.dietLabels[0]}, ${recipe.dietLabels[1]}</span>`}`)}
           </div>
-          <div><div id="google-chart" style="width: 100%; height: 90%;"></div></div>
         </div>
       </section>
      </header>
@@ -126,11 +132,11 @@ async function fetchSubmit(e) {
   formButton.search.disabled = true;
   
   // Fetch and display the results of the searched keyword
-  await fetchRecipes(formButton.keyword.value);
+  await fetchRecipes(formButton.keyword.value).catch(handleError);
 
   // Enable the search button again
   formButton.search.disabled = false;
 }
 
 // Exports, to be used in other JS files
-export { handleError, fetchSubmit, fetchRecipe, recipeCardsGen, drawChart };
+export { handleError, fetchSubmit, fetchRecipe, recipeCardsGen, displayGooglePie };
