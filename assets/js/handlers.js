@@ -22,6 +22,7 @@ function handleCloseModal() {
   const modalRecipe = body.querySelector('.close-modal');
   modalRecipe.addEventListener('click', closeModal, { once: true });
 
+  // Close the modal on ESC key if pressed
   window.addEventListener('keydown', (e) => {
     if(e.key === 'Escape') {
       closeModal();
@@ -33,7 +34,7 @@ function handleCloseModal() {
 // Function to fetch & display the clicked recipe and add an evetListener to close the modal
 function handleRecipeClick(e) {
   const recipe = e.currentTarget.querySelector('.recipe-card-title').innerText;
-  // Run fetchRecipe function from utils.js 
+  // Run fetchRecipe function in utils.js 
   fetchRecipe(recipe);
 }
 
