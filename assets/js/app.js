@@ -1,6 +1,10 @@
 // Imports, to be used
 import { recipesGrid, grabRecipeCard, body, cardSection, handleCloseModal } from './handlers.js';
-import { displayGooglePie } from './utils.js';
+import { genGooglePie } from './utils.js';
+
+function displayHelp() {
+  console.log('Hello!')
+}
 
 function displaySingleRecipe(producedSingleHTML) {
   // Grab the recipe section modal
@@ -23,7 +27,7 @@ function displaySingleRecipe(producedSingleHTML) {
   cardSection.prepend(cardArticle);
 
   // Run the google pie api in utils.js
-  displayGooglePie();
+  genGooglePie();
 
   // Fire the close modal eventListener in handlers.js
   handleCloseModal();
@@ -49,4 +53,4 @@ function displayRecipes(producedHTML) {
 }
 
 // Exports, to be used in other JS files
-export { displayRecipes, displaySingleRecipe };
+export { displayRecipes, displaySingleRecipe, displayHelp };
