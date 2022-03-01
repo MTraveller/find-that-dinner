@@ -1,5 +1,5 @@
 // Imports, to be used
-import { recipeCardsGen, handleError } from './utils.js'
+import { recipeCardsGen, handleError } from './utils.js';
 
 // Break up the URL from / to the query
 let firstEndpoint = 'https://api.edamam.com/api/recipes/v2?type=public&beta=true&q=';
