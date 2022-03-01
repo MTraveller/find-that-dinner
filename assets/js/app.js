@@ -1,6 +1,6 @@
 // Imports, to be used
 import { recipesGrid, grabRecipeCard, body, handleCloseModal } from './handlers.js';
-import { drawChart } from './utils.js';
+import { displayGooglePie } from './utils.js';
 
 function displaySingleRecipe(producedSingleHTML) {
   console.log(producedSingleHTML);
@@ -18,14 +18,14 @@ function displaySingleRecipe(producedSingleHTML) {
   // Temporary add class to content
   body.style.overflow = 'hidden';
 
-  // content.style.display = 'none';
+  // Change modal display property to block
   cardSection.style.display = 'block';
 
-  //  Print single recipe on the document
+  // Print single recipe on the document
   body.prepend(cardSection);
 
-  // Set a callback to run when the Google Visualization API is loaded.
-  google.charts.setOnLoadCallback(drawChart);
+  // Run the google pie api
+  displayGooglePie();
 
   // Fire the close modal eventListener once done with printing the recipe
   handleCloseModal();
