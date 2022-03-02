@@ -155,9 +155,7 @@ Images live inside the `<img>` tag within the `<figure>` tag and while I tried a
 
 ### Form
 
-On the page, there's a form, nothing special; a bit of styling to make it look appropriate and aligned with the website as a whole. The search `<input>` do have label which is set to -9999px. A placeholder attribute is used to make it look cleaner. The search input is set to required and the submit button is disabled while the fetch request happens and is enabled again after the fetch. 
-
-![FORM](./assets/images/readme/form.jpg)
+On the page, there's a form, nothing special; a bit of styling to make it look appropriate and aligned with the website as a whole. The search `<input>` do have label which is set to -9999px. A placeholder attribute is used to make it look cleaner. The search input is set to required and the submit button is disabled while the fetch request happens and is enabled again after the fetch.
 
 ## Testings
 
