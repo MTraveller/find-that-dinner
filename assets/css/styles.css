@@ -103,7 +103,7 @@ menu {
   padding: 0;
 }
 
-menu li {
+li.help {
   cursor: pointer;
 }
 
