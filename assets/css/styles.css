@@ -224,6 +224,7 @@ input[type="submit"] {
   overflow: auto;
 }
 
+/* Styles for the inner content of the modal */
 article {
   width: 95%;
   max-width: 680px;
@@ -348,7 +349,7 @@ article {
   }
 }
 
-/* Style for footer */
+/* Styles for footer */
 footer {
   padding: 60px 0 30px;
   font-weight: 400;
