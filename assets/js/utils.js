@@ -11,7 +11,6 @@ function handleError(err) {
 
 // Function to generate the HTML for the clicked help link
 function genHelp() {
-  console.log('generating html');
 
   // Grab the info from the recipes array and generate the html for the clicked recipe
   const genHelpHTML = `
