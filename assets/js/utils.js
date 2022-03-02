@@ -11,7 +11,32 @@ function handleError(err) {
 
 function genHelp() {
   console.log('generating html');
-  return displayHelp();
+
+  // Grab the info from the recipes array and generate the html for the clicked recipe
+  const genHelpHTML = `
+    <div class="close-button"><span class="close-modal">✘</span></div>
+     <header>
+      <h2>How to use this website</h2>
+     </header>
+     <section>
+      <h3>How to search for recipes?</h3>
+      <p>To search for recipes, you must use a main ingredient keyword, such as chicken or beef. Are you a vegetarian, no worries,
+      use any non-meat ingredient such as cheek pea or bean. You can even make a search with any fruits as an ingredient,
+      try make a search with "pomegranate" ;)</p>
+      <h3>Where does the information come from?</h3>
+      <p>All images, text and links is retrieved from edemame.com database by an API call everytime a call is made.
+      Their server returns 20 random recipes, please note, no recipes are saved on our servers. Once you make a new search, all
+      previous 20 recipes are gone and there is no way to reference a specific recipe on this website.</p>
+      <h3>Issues you might run into!</h3>
+      <p>This website display's exactly what is returned from the API, when a search is initiated. From time to time depending on
+      how the source/ original website has writing the recipe, you might see dubplicate ingredients and missing images. In case of 
+      missing images, the API server return a 404 error (missing or broken image url) thus the missing image is not shown from our side.</p>
+      <p>As for the dubplicate ingredients, you may see dubplicate lines on the recipe popup, depending how the source/ original website has 
+      writing the recipe. This website does not filter dubplicates as we believe, that should already be done on edemane's servers.</p>
+     </section>`
+  ;
+
+  return displayHelp(genHelpHTML);
 }
 
 // Function to generate google pie on recipe load
