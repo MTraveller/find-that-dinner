@@ -221,7 +221,7 @@ Being new to anything little mistakes happen, lesson learned. The order of `DOM`
 
 ![appendChild](./assets/images/readme/append-child.jpg)
 
-Where and timing was a bit off which triggered this error. I fixed the why, but I wanted it above all else as the firstChild in body. For that I used `prepend` as at first I was removing all children of within the body. Later changed to overlay above main content with a slight CSS transition of 0.4s that gives it a nice fade effect. Actually because of this effect I had to refactor my code to make it possible as `display` property does not work with CSS transition.
+Where and timing was a bit off which triggered this error. I fixed the why, but I wanted it above all else as the firstChild in body. For that I used `prepend` as at first I was removing all children of the body. Later changed to an overlay modal above main content with a slight CSS transition of 0.4s that gives it a nice fade effect. Actually because of this effect I had to refactor my code to make it possible as `display` property does not work with CSS transition.
 
 ## Validators
 
