@@ -50,10 +50,6 @@ figure {
   margin: 0 0 14px 0;
 }
 
-ul, li {
-  padding: 0;
-}
-
 p {
   margin: 5px 0;
 }
@@ -98,17 +94,14 @@ button {
   }  
 }
 
-menu {
+.help {
   font-size: 4vw;
+  font-weight: 700;
   padding: 0;
 }
 
-li.help {
-  cursor: pointer;
-}
-
 @media screen and (min-width: 940px) {
-  menu {
+  .help {
     font-size: 37.55px;
   }  
 }
@@ -156,6 +149,10 @@ input[type="submit"] {
   font-size: 1.6rem;
   border: 0;
   box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+}
+
+input[disabled] {
+  opacity: 0.2;
 }
 
 /*  Styles for recipes grid */
