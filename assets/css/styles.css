@@ -103,6 +103,10 @@ menu {
   padding: 0;
 }
 
+menu li {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 940px) {
   menu {
     font-size: 37.55px;
