@@ -27,7 +27,7 @@ Project URL: [View live project](https://mtraveller.github.io/find-that-dinner/i
         -   The three main colors used are black ![black](./assets/images/readme/272727.jpg) #272727, white ![white](./assets/images/readme/ffffff.jpg) #FFFFFF and yellow ![yellow](./assets/images/readme/ffc600.jpg) #FFC600.
 
     -   #### Typography
-        -   I decided to go with: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;` for proformance. The system font that people are used to on their decides works great for this type of project while keeping the weight of the website ligther.
+        -   I decided to go with: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;` for performance sake. The system font that people are used to on their decides works great for this type of project while keeping the weight of the website ligther.
 
     -   #### Imagery & Video
 
