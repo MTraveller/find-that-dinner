@@ -9,6 +9,7 @@ function handleError(err) {
   alert('Ooops.. Something went wrong. Reason: ' + err);
 }
 
+// Function to generate the HTML for the clicked help link
 function genHelp() {
   console.log('generating html');
 
