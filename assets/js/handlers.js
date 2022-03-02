@@ -3,7 +3,7 @@ import { fetchSubmit, fetchRecipe, genHelp } from './utils.js';
 
 // Query selectors
 const body = document.querySelector('body');
-const cardSection = body.querySelector('.recipe-card-single');
+const cardSection = body.querySelector('.modal');
 const help = body.querySelector('.help');
 const content = body.querySelector('.content');
 const form = content.querySelector('[name="search"]');
@@ -15,7 +15,7 @@ function closeModal() {
   cardSection.classList.remove('active');
 
   // Remove added classes
-  body.style.removeProperty('overflow');
+  return body.style.removeProperty('overflow');
 }
 
 // Select and add an eventListener once to close the modal
@@ -29,14 +29,14 @@ function handleCloseModal() {
       closeModal();
     }
   });
-
+  return;
 }
 
 // Function to fetch & display the clicked recipe and add an evetListener to close the modal
 function handleRecipeClick(e) {
   const recipe = e.currentTarget.querySelector('.recipe-card-title').innerText;
   // Run fetchRecipe function in utils.js 
-  fetchRecipe(recipe);
+  return fetchRecipe(recipe);
 }
 
 // Function to handle each recipe cards clicks
@@ -45,6 +45,7 @@ function grabRecipeCard() {
   recipeCards.forEach(function(recipeCard) {
     recipeCard.addEventListener('click', handleRecipeClick);
   });
+  return;
 }
 
 // eventListener for help link trigger genHelp function in utils.js
