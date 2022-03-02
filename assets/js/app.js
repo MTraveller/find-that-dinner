@@ -3,7 +3,7 @@ import { recipesGrid, grabRecipeCard, body, cardSection, handleCloseModal } from
 import { genGooglePie } from './utils.js';
 
 function displayHelp() {
-  console.log('Hello!')
+  return console.log('Hello!')
 }
 
 function displaySingleRecipe(producedSingleHTML) {
@@ -16,6 +16,9 @@ function displaySingleRecipe(producedSingleHTML) {
   // Create article modal
   const cardArticle = document.createElement('article');
   cardArticle.innerHTML = producedSingleHTML;
+  
+  // Start at the top of the modal
+  cardSection.scrollTo(0, 0);
 
   // Temporary add class to content
   body.style.overflow = 'hidden';
@@ -30,7 +33,7 @@ function displaySingleRecipe(producedSingleHTML) {
   genGooglePie();
 
   // Fire the close modal eventListener in handlers.js
-  handleCloseModal();
+  return handleCloseModal();
 }
 
 // Function that extracts the info from the returned api response and loops over each item
@@ -49,7 +52,7 @@ function displayRecipes(producedHTML) {
   });
 
   // Run function grabRecipeCard in handlers.js
-  grabRecipeCard();
+  return grabRecipeCard();
 }
 
 // Exports, to be used in other JS files
