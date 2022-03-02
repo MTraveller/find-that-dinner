@@ -263,6 +263,12 @@ article {
   justify-items: center;
 }
 
+@media screen and (max-width: 360px) {
+  .recipe-header {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
 .recipe-title {
   grid-column: 1 / -1;
 }
